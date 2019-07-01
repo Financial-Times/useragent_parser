@@ -2,13 +2,13 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12
     steps:
       - checkout
       - run: npm cit
   publish_to_npm:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:12
     steps:
       - checkout
       - run: npx occ ${CIRCLE_TAG##v}
