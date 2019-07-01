@@ -8,7 +8,12 @@ sub useragent_parser {
   declare local var.Patch STRING;
   set var.Patch = "";
   if (!req.http.User-Agent) {
-  } else if (req.http.User-Agent ~ {"(ESPN)[%20| ]+Radio/(\d+)\.(\d+)\.(\d+) CFNetwork"}) {
+  } else if (req.http.User-Agent ~ {"(iPod|iPod touch|iPhone|iPad);.*CPU.*OS[ +](\d+)_(\d+)(?:_(\d+)|).* [A-Za-z]+\/\d+\.\d+\.\d+?"}) {
+		set var.Family = "Mobile Safari UI/WKWebView";
+		set var.Major = re.group.2;
+		set var.Minor = re.group.3;
+		set var.Patch = re.group.4;
+	} else if (req.http.User-Agent ~ {"(ESPN)[%20| ]+Radio/(\d+)\.(\d+)\.(\d+) CFNetwork"}) {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;

@@ -6,6 +6,9 @@ const path = require("path");
 
 
 // Get document, or throw exception on error
+const customUap = yaml.safeLoad(
+  fs.readFileSync(require.resolve("../regexes.yaml"), "utf8")
+).user_agent_parsers;
 const uap = yaml.safeLoad(
   fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
@@ -26,7 +29,7 @@ const end = `
   };
 }`;
 let file = "";
-for (const agent of uap) {
+for (const agent of customUap.concat(uap)) {
   const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex + '|')).exec('').length - 1;
   
   let s = "";
