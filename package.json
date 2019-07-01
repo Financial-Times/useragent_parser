@@ -5,7 +5,7 @@
   "main": "lib/ua_parser.js",
   "scripts": {
     "test": "mocha test/ua.test.js",
-    "update": "npm ci && git remote add -f uap-ref-impl https://github.com/ua-parser/uap-ref-impl.git; git remote add -f uap-core https://github.com/ua-parser/uap-core.git; git fetch uap-core master && git fetch uap-ref-impl master && git subtree pull --prefix uap-ref-impl uap-ref-impl master --squash && git subtree pull --prefix uap-core uap-core master --squash && node ./compilers/vcl.js && node ./compilers/js.js"
+    "update": "./update.sh"
   },
   "author": "Jake Champion",
   "license": "MIT",
