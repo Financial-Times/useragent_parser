@@ -10,8 +10,8 @@
   "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
-    "js-yaml": "^3.11.0",
-    "mocha": "^5.2.0",
+    "js-yaml": "^3.13.1",
+    "mocha": "^6.1.4",
     "proclaim": "^3.6.0",
     "uap-core": "github:ua-parser/uap-core#f330b0337297ec979196a762cbb351ee29fce403",
     "uap-ref-impl": "github:ua-parser/uap-ref-impl#d3a71a0fe706560aeee686e8dd516a574f874575",
