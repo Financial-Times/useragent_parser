@@ -18,10 +18,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JakeChampion/varnish-uap.git"
+    "url": "git+https://github.com/Financial-Times/useragent_parser.git"
   },
   "bugs": {
-    "url": "https://github.com/JakeChampion/varnish-uap/issues"
+    "url": "https://github.com/Financial-Times/useragent_parser/issues"
   },
-  "homepage": "https://github.com/JakeChampion/varnish-uap#readme"
+  "homepage": "https://github.com/Financial-Times/useragent_parser#readme"
 }
