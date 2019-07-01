@@ -7,7 +7,7 @@ const path = require("path");
 
 // Get document, or throw exception on error
 const uap = yaml.safeLoad(
-  fs.readFileSync(require.resolve("uap-core/regexes.yaml"), "utf8")
+  fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const start = `module.exports = function useragent_parser(ua) {
   let family = "Other";

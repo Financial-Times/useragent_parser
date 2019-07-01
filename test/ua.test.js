@@ -6,9 +6,9 @@ const assert = require("proclaim");
 const yaml = require("yamlparser");
 const uaParser = require('../lib/ua_parser');
 
-const filePath = require.resolve("uap-core/regexes.yaml");
+const filePath = require.resolve("../uap-core/regexes.yaml");
 
-const refImpl = require("uap-ref-impl")(readYAML(filePath));
+const refImpl = require("../uap-ref-impl")(readYAML(filePath));
 
 function readYAML(fileName) {
 	const data = fs.readFileSync(fileName, "utf8");
@@ -31,11 +31,11 @@ function fixFixture(f, props) {
 }
 
 const fixtures = [
-	require.resolve("uap-core/test_resources/firefox_user_agent_strings.yaml"),
-	require.resolve("uap-core/tests/test_ua.yaml"),
-	require.resolve("uap-core/test_resources/pgts_browser_list.yaml"),
-	require.resolve("uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
-	require.resolve("uap-core/test_resources/podcasting_user_agent_strings.yaml")
+	require.resolve("../uap-core/test_resources/firefox_user_agent_strings.yaml"),
+	require.resolve("../uap-core/tests/test_ua.yaml"),
+	require.resolve("../uap-core/test_resources/pgts_browser_list.yaml"),
+	require.resolve("../uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
+	require.resolve("../uap-core/test_resources/podcasting_user_agent_strings.yaml")
 ]
 .reduce((acc, filename) => acc.concat(readYAML(filename).test_cases), [])
 .map(f => fixFixture(f, ["major", "minor", "patch"]));
