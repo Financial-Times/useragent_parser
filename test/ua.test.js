@@ -51,10 +51,10 @@ describe("useragent-parser should pass tests from the ua-parser/uap-core project
 			assert.strictEqual(ua.patch || undefined, f.patch, msg("ua.patch", ua.patch, f.patch));
 
 			const results = uaParser(f.user_agent_string);
-			assert.strictEqual(results.family, f.family);
-			assert.strictEqual(results.major, f.major);
-			assert.strictEqual(results.minor, f.minor);
-			assert.strictEqual(results.patch, f.patch);
+			assert.strictEqual(results.family || undefined, f.family);
+			assert.strictEqual(results.major || undefined, f.major);
+			assert.strictEqual(results.minor || undefined, f.minor);
+			assert.strictEqual(results.patch || undefined, f.patch);
 		});
 	});
 });
