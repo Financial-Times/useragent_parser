@@ -4,6 +4,7 @@
 const fs = require("fs");
 const assert = require("proclaim");
 const yaml = require("yamlparser");
+const _ = require('lodash');
 const uaParser = require('../lib/ua_parser');
 
 const filePath = require.resolve("../uap-core/regexes.yaml");
@@ -24,37 +25,32 @@ function fixFixture(f, props) {
 	// return a vanila object.
 	props.forEach(function (p) {
 		if (typeof f[p] === "object") {
-			f[p] = undefined;
+			f[p] = '';
 		}
 	});
 	return f;
 }
 
-const fixtures = [
-	require.resolve("../uap-core/test_resources/firefox_user_agent_strings.yaml"),
-	require.resolve("../uap-core/tests/test_ua.yaml"),
-	require.resolve("../uap-core/test_resources/pgts_browser_list.yaml"),
-	require.resolve("../uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
-	require.resolve("../uap-core/test_resources/podcasting_user_agent_strings.yaml")
-]
-.reduce((acc, filename) => acc.concat(readYAML(filename).test_cases), [])
-.map(f => fixFixture(f, ["major", "minor", "patch"]));
+const fixtures = _.uniqBy([
+		require.resolve("./user_agent_strings.yaml"),
+		require.resolve("../uap-core/test_resources/firefox_user_agent_strings.yaml"),
+		require.resolve("../uap-core/tests/test_ua.yaml"),
+		require.resolve("../uap-core/test_resources/pgts_browser_list.yaml"),
+		require.resolve("../uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
+		require.resolve("../uap-core/test_resources/podcasting_user_agent_strings.yaml")
+	]
+	.reduce((acc, filename) => acc.concat(readYAML(filename).test_cases), [])
+	.map(f => fixFixture(f, ["major", "minor", "patch"])), 'user_agent_string');
 
 describe("useragent-parser should pass tests from the ua-parser/uap-core project", function () {
 	this.timeout(30000);
 	fixtures.forEach(function (f) {
 		it(`parses ${f.user_agent_string} correctly`, function () {
-			const ua = refImpl.parse(f.user_agent_string).ua;
-			assert.strictEqual(ua.family || undefined, f.family, msg("ua.family", ua.family, f.family));
-			assert.strictEqual(ua.major || undefined, f.major, msg("ua.major", ua.major, f.major));
-			assert.strictEqual(ua.minor || undefined, f.minor, msg("ua.minor", ua.minor, f.minor));
-			assert.strictEqual(ua.patch || undefined, f.patch, msg("ua.patch", ua.patch, f.patch));
-
 			const results = uaParser(f.user_agent_string);
-			assert.strictEqual(results.family || undefined, f.family);
-			assert.strictEqual(results.major || undefined, f.major);
-			assert.strictEqual(results.minor || undefined, f.minor);
-			assert.strictEqual(results.patch || undefined, f.patch);
+			assert.strictEqual(results.family, f.family, msg("results.family", results.family, f.family));
+			assert.strictEqual(results.major || '' , f.major, msg("results.major", results.major || '', f.major));
+			assert.strictEqual(results.minor || '', f.minor, msg("results.minor", results.minor || '', f.minor));
+			assert.equal(results.patch || '', f.patch || '', msg("results.patch", results.patch || '', f.patch || ''));
 		});
 	});
 });
