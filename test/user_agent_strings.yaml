@@ -1,6 +1,12 @@
 # These are user-agent strings which have been overriden by our parser from what the uap-core project expect them to be parsed as
 test_cases:
 
+  - user_agent_string: 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Snapchat/10.44.1.1 (iPhone7,2; iOS 10.2.1; gzip)'
+    family: 'Mobile Safari UI/WKWebView'
+    major: '10'
+    minor: '2'
+    patch: '1'
+
   - user_agent_string: 'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10'
     family: 'Mobile Safari UI/WKWebView'
     major: '3'
