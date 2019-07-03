@@ -5,7 +5,7 @@ const fs = require("fs");
 const assert = require("proclaim");
 const yaml = require("yamlparser");
 const _ = require('lodash');
-const uaParser = require('../lib/ua_parser');
+const uaParser = require("../lib/ua_parser");
 
 const filePath = require.resolve("../uap-core/regexes.yaml");
 
@@ -25,7 +25,7 @@ function fixFixture(f, props) {
 	// return a vanila object.
 	props.forEach(function (p) {
 		if (typeof f[p] === "object") {
-			f[p] = '';
+			f[p] = "";
 		}
 	});
 	return f;
@@ -48,9 +48,9 @@ describe("useragent-parser should pass tests from the ua-parser/uap-core project
 		it(`parses ${f.user_agent_string} correctly`, function () {
 			const results = uaParser(f.user_agent_string);
 			assert.strictEqual(results.family, f.family, msg("results.family", results.family, f.family));
-			assert.strictEqual(results.major || '' , f.major, msg("results.major", results.major || '', f.major));
-			assert.strictEqual(results.minor || '', f.minor, msg("results.minor", results.minor || '', f.minor));
-			assert.equal(results.patch || '', f.patch || '', msg("results.patch", results.patch || '', f.patch || ''));
+			assert.strictEqual(results.major || "", f.major, msg("results.major", results.major || "", f.major));
+			assert.strictEqual(results.minor || "", f.minor, msg("results.minor", results.minor || "", f.minor));
+			assert.equal(results.patch || "", f.patch || "", msg("results.patch", results.patch || "", f.patch || ""));
 		});
 	});
 });
