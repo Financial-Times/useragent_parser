@@ -4,7 +4,7 @@
 const fs = require("fs");
 const assert = require("proclaim");
 const yaml = require("yamlparser");
-const _ = require('lodash');
+const filterDuplicatesBy = require("lodash/uniqBy");
 const uaParser = require("../lib/ua_parser");
 
 const filePath = require.resolve("../uap-core/regexes.yaml");
@@ -31,21 +31,28 @@ function fixFixture(f, props) {
 	return f;
 }
 
-const fixtures = _.uniqBy([
-		require.resolve("./user_agent_strings.yaml"),
-		require.resolve("../uap-core/test_resources/firefox_user_agent_strings.yaml"),
-		require.resolve("../uap-core/tests/test_ua.yaml"),
-		require.resolve("../uap-core/test_resources/pgts_browser_list.yaml"),
-		require.resolve("../uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
-		require.resolve("../uap-core/test_resources/podcasting_user_agent_strings.yaml")
-	]
+/*
+	The order matters here, we want our user agent strings to come first because
+	then they'll be the ones kept by `filterDuplicatesBy` and those are the ones
+	overridden in our parser
+*/
+const everyFixture = [
+	require.resolve("./user_agent_strings.yaml"),
+	require.resolve("../uap-core/test_resources/firefox_user_agent_strings.yaml"),
+	require.resolve("../uap-core/tests/test_ua.yaml"),
+	require.resolve("../uap-core/test_resources/pgts_browser_list.yaml"),
+	require.resolve("../uap-core/test_resources/opera_mini_user_agent_strings.yaml"),
+	require.resolve("../uap-core/test_resources/podcasting_user_agent_strings.yaml")
+]
 	.reduce((acc, filename) => acc.concat(readYAML(filename).test_cases), [])
-	.map(f => fixFixture(f, ["major", "minor", "patch"])), 'user_agent_string');
+	.map(f => fixFixture(f, ["major", "minor", "patch"]));
 
-describe("useragent-parser should pass tests from the ua-parser/uap-core project", function () {
+const fixtures = filterDuplicatesBy(everyFixture, "user_agent_string");
+
+describe("useragent-parser should pass tests from the ua-parser/uap-core project", function() {
 	this.timeout(30000);
-	fixtures.forEach(function (f) {
-		it(`parses ${f.user_agent_string} correctly`, function () {
+	fixtures.forEach(function(f) {
+		it(`parses ${f.user_agent_string} correctly`, function() {
 			const results = uaParser(f.user_agent_string);
 			assert.strictEqual(results.family, f.family, msg("results.family", results.family, f.family));
 			assert.strictEqual(results.major || "", f.major, msg("results.major", results.major || "", f.major));
