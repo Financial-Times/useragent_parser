@@ -6,13 +6,13 @@ jobs:
     steps:
       - checkout
       - run: npm cit
+      - run: npx @commitlint/cli --from=origin/master --to=HEAD --verbose
   publish_to_npm:
     docker:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > $HOME/.npmrc
-      - run: npm publish --access public 
+      - run: npm run semantic-release
 workflows:
   version: 2
   test:
@@ -20,7 +20,5 @@ workflows:
       - test
       - publish_to_npm:
           filters:
-            tags:
-              only: /^v?\d+\.\d+\.\d+(?:-beta\.\d+)?$/
             branches:
-              ignore: /.*/
+              only: master

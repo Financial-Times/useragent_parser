@@ -1,28 +1,67 @@
 {
   "name": "@financial-times/useragent_parser",
-  "version": "1.2.1",
+  "version": "0.0.0-development",
   "description": "This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
   "main": "lib/ua_parser.js",
   "scripts": {
+    "commit": "git-cz",
     "test": "mocha test/ua.test.js",
-    "update": "./update.sh"
+    "update": "./update.sh",
+    "semantic-release": "semantic-release"
   },
   "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
+    "commitizen": "^4.0.1",
+    "cz-conventional-changelog": "^2.1.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "mocha": "^6.1.4",
     "proclaim": "^3.6.0",
-    "yamlparser": "0.0.2"
+    "yamlparser": "0.0.2",
+    "semantic-release": "^15.13.18"
   },
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Financial-Times/useragent_parser.git"
+    "url": "https://github.com/Financial-Times/useragent_parser.git"
   },
   "bugs": {
     "url": "https://github.com/Financial-Times/useragent_parser/issues"
   },
-  "homepage": "https://github.com/Financial-Times/useragent_parser#readme"
+  "homepage": "https://github.com/Financial-Times/useragent_parser#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
+      }
+    ]
+  }
 }
