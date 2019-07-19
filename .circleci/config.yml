@@ -12,12 +12,16 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: npm run semantic-release
+      - run: npx semantic-release
+
 workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              ignore: master
       - publish_to_npm:
           filters:
             branches:
