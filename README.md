@@ -6,7 +6,7 @@ This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/
 
 ## Updating
 
-  `uap-core` definitions are, by default, compiled and included in the package. To regenerate these definitions you can run the `npm run update` script.
+  `uap-core` definitions are, by default, compiled and included in the package. Updating `uap-core` is done every day via a GitHub Action.
 
 # Example in VCL
 
