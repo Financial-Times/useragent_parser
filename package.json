@@ -21,7 +21,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
-    "mocha": "^6.1.4",
+    "mocha": "^7.0.0",
     "proclaim": "^3.6.0",
     "semantic-release": "^15.13.18",
     "uap-ref-impl": "^0.3.0",
