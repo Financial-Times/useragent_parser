@@ -8,8 +8,7 @@ jobs:
       - run:
           name: "Pull Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init --recursive
       - run: npm cit
       - run: npx @commitlint/cli --from=origin/master --to=HEAD --verbose
   publish_to_npm:
@@ -20,8 +19,7 @@ jobs:
       - run:
           name: "Pull Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init --recursive
       - run: npm ci
       - run: npx semantic-release
 
