@@ -1,6 +1,6 @@
 user_agent_parsers:
   # iOS / OSX Applications
-  - regex: '(iPod|iPod touch|iPhone|iPad);.*CPU.*OS[ +](\d+)_(\d+)(?:_(\d+)|).* like Gecko\) (?!Version\/[\d.]+)[A-Za-z]+\/[\d.]+'
+  - regex: '(iPod|iPod touch|iPhone|iPad);.*CPU.*OS[ +]\d+_\d+(?:_\d+|).* like Gecko\) (?!Version\/[\d.]+)[A-Za-z]+\/[\d.]+'
     family_replacement: 'Mobile Safari/WKWebView'
   - regex: '(iPod|iPhone|iPad).+GSA/(\d+)\.(\d+)\.(\d+) Mobile'
     family_replacement: 'Mobile Safari/WKWebView'
