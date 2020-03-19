@@ -82,9 +82,13 @@ for (const agent of customUap.concat(uap)) {
     s += `\n\t\tset var.Minor = re.group.3;`;
   }
 
-  if (amountOfCapturingGroupsInRegex > 3) {
+  if (agent.v3_replacement) {
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.v3_replacement));
+    s += `\n\t\tset var.Patch=${fastlySafeString};`;
+  } else if (amountOfCapturingGroupsInRegex > 3) {
     s += `\n\t\tset var.Patch = re.group.4;`;
   }
+
   s += "\n\t}";
   file += s;
 }

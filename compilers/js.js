@@ -57,9 +57,12 @@ for (const agent of customUap.concat(uap)) {
     s += `\n\t\tminor = result[3];`;
   }
 
-  if (amountOfCapturingGroupsInRegex > 3) {
+  if (agent.v3_replacement) {
+    s += `\n\t\tpatch="${agent.v3_replacement}";`;
+  } else if (amountOfCapturingGroupsInRegex > 3) {
     s += `\n\t\tpatch = result[4];`;
   }
+
   s += "\n\t}";
   file += s;
 }
