@@ -14,7 +14,7 @@
   "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
+    "@commitlint/cli": "^9.0.1",
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^7.0.16",
     "commitizen": "^4.0.1",
