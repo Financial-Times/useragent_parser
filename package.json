@@ -5,25 +5,17 @@
   "main": "lib/ua_parser.js",
   "scripts": {
     "build": "node ./compilers/vcl.js && node ./compilers/js.js",
-    "commit": "git-cz",
     "test": "mocha test/ua.test.js",
-    "semantic-release": "semantic-release",
     "version": "npm run build",
     "prepare": "npm run build"
   },
   "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "@semantic-release/changelog": "^5.0.0",
-    "@semantic-release/git": "^7.0.16",
-    "commitizen": "^4.0.1",
-    "cz-conventional-changelog": "^3.1.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "mocha": "^8.0.1",
     "proclaim": "^3.6.0",
-    "semantic-release": "^15.13.18",
     "uap-ref-impl": "^0.3.0",
     "yamlparser": "0.0.2"
   },
@@ -35,31 +27,5 @@
   "bugs": {
     "url": "https://github.com/Financial-Times/useragent_parser/issues"
   },
-  "homepage": "https://github.com/Financial-Times/useragent_parser#readme",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ],
-    "prepare": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      {
-        "path": "@semantic-release/git",
-        "assets": [
-          "package.json",
-          "package-lock.json",
-          "CHANGELOG.md"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
-      }
-    ]
-  }
+  "homepage": "https://github.com/Financial-Times/useragent_parser#readme"
 }
