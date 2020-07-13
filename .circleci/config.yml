@@ -10,7 +10,6 @@ jobs:
           command: |
             git submodule update --init --recursive
       - run: npm cit
-      - run: npx @commitlint/cli --from=origin/master --to=HEAD --verbose
   publish_to_npm:
     docker:
       - image: circleci/node:12
@@ -21,7 +20,7 @@ jobs:
           command: |
             git submodule update --init --recursive
       - run: npm ci
-      - run: npx semantic-release
+      - run: npm publish
 
 workflows:
   version: 2
