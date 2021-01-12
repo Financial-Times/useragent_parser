@@ -12,7 +12,7 @@
   "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.0.0",
     "lodash": "^4.17.11",
     "mocha": "^8.0.1",
     "proclaim": "^3.6.0",
