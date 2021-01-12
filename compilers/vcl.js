@@ -30,7 +30,7 @@ function convertToFastlyRegExpCaptureGroups(str) {
     .join(" ");
 }
 
-const customUap = yaml.safeLoad(
+const customUap = yaml.load(
   fs.readFileSync(require.resolve("../regexes.yaml"), "utf8")
 ).user_agent_parsers;
 // Get document, or throw exception on error
