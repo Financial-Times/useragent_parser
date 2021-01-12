@@ -6,10 +6,10 @@ const path = require("path");
 
 
 // Get document, or throw exception on error
-const customUap = yaml.safeLoad(
+const customUap = yaml.load(
   fs.readFileSync(require.resolve("../regexes.yaml"), "utf8")
 ).user_agent_parsers;
-const uap = yaml.safeLoad(
+const uap = yaml.load(
   fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const start = `module.exports = function useragent_parser(ua) {
