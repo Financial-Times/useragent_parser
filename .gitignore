@@ -1,3 +1,4 @@
 node_modules
 lib/ua_parser.vcl
 lib/ua_parser.js
+lib/ua_parser-c-at-e.js
