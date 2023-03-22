@@ -121,6 +121,8 @@ user_agent_parsers:
     family_replacement: "Mobile Safari/WKWebView"
   - regex: '(iPod|iPhone|iPad).+OS (\d+)_(\d+) like Mac OS X\) AppleWebKit\/605\.1(?:\.\d+|) \(KHTML, like Gecko\) Mobile\/\w+'
     family_replacement: "Mobile Safari/WKWebView"
+  - regex: '(iPod|iPhone|iPad).+OS (\d+)_(\d+)_(\d+) like Mac OS X\) AppleWebKit\/605\.1(?:\.\d+|) \(KHTML, like Gecko\) Mobile\/\w+'
+    family_replacement: "Mobile Safari/WKWebView"
   - regex: '(iPod|iPhone|iPad).+AppleWebKit\/605\.1(?:\.\d+|)'
     family_replacement: "Mobile Safari/WKWebView"
     v1_replacement: "11"
